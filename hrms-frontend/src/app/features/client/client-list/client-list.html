@@ -1,0 +1,37 @@
+<h2>Clients</h2>
+
+@if (loading()) {
+  <div>Loading...</div>
+}
+@if(error()){
+ <div style="color:red;">
+  {{ error() }}
+</div> 
+}
+
+@if (!loading()) {
+  <table border="1" cellpadding="10" >
+  <thead>
+    <tr>
+      <th>Company Name</th>
+      <th>Email</th>
+      <th>Plan</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    @for (client of clients; track client._id) {
+  <tr>
+      <td>{{ client.companyName }}</td>
+      <td>{{ client.companyEmail }}</td>
+      <td>{{ client.subscriptionPlan }}</td>
+       <td><button (click)="onUpdate(client)">Update</button></td>
+      <td><button (click)="onDelete(client._id)">Delete</button></td>
+    </tr>
+}
+  </tbody>
+</table>
+}
+
+
+

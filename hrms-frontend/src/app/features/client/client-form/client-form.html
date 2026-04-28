@@ -1,0 +1,16 @@
+<h2>Create Client</h2>
+
+<form [formGroup]="createClientForm" (ngSubmit)="onSubmit()">
+  <input type="text" formControlName="companyName" placeholder="Company Name" />
+  
+  <input type="email" formControlName="companyEmail" placeholder="Email" />
+
+  <select formControlName="subscriptionPlan">
+    <option value="FREE">FREE</option>
+    <option value="PRO">PRO</option>
+    <option value="ENTERPRISE">ENTERPRISE</option>
+  </select>
+
+  <button type="submit">Create</button>
+</form>
+

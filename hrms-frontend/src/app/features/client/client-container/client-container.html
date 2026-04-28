@@ -1,0 +1,15 @@
+@if (loading()) {
+  <div>Loading...</div>
+}
+
+@if (error()) {
+  <div style="color:red;">
+    {{ error() }}
+  </div> 
+}
+
+<app-client-list 
+  [clients]="clients()"  
+  (deleteClient)="onDeleteClient($event)" 
+  (updateClient)="onEditClient($event)">
+</app-client-list>
