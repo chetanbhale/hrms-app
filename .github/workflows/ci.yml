@@ -42,7 +42,7 @@ jobs:
       - name: Run Frontend Tests
         run: |
           cd hrms-frontend
-          npm run test -- --watch=false --browsers=ChromeHeadless
+          npm run test -- --watch=false
 
       - name: Build Frontend
         run: |
