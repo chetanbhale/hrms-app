@@ -23,6 +23,11 @@ jobs:
           cd hrms-backend
           npm install
 
+      - name: Run Backend Tests
+              run: |
+                cd hrms-backend
+                npm test
+
       - name: Build Backend
         run: |
           cd hrms-backend
@@ -33,6 +38,11 @@ jobs:
         run: |
           cd hrms-frontend
           npm install
+          
+      - name: Run Frontend Tests
+          run: |
+            cd hrms-frontend
+            npm run test -- --watch=false --browsers=ChromeHeadless
 
       - name: Build Frontend
         run: |
