@@ -7,7 +7,8 @@ import { ApiResponse } from '../../features/client/client.model';
   providedIn: 'root',
 })
 export class Client {
-    private baseUrl = 'http://localhost:5000/api/clients';
+   private baseUrl ='https://hrms-app-1-3uil.onrender.com/api/clients'
+    // private baseUrl = 'http://localhost:5000/api/clients';
    constructor (private httpclient:HttpClient){}
     getClient():Observable<any>{
       return this.httpclient.get(this.baseUrl);
