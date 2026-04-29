@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
   // private baseUrl = 'http://localhost:5000/api/auth';
-  private baseUrl ='https://hrms-app-1-3uil.onrender.com/api/auth'
+  private baseUrl ='https://hrms-app-frontend.onrender.com/api/auth'
   constructor(private httpClient:HttpClient){};
   login(data:{email:string;password:string}):Observable<any>{
     return this.httpClient.post(`${this.baseUrl}/login`,data)
