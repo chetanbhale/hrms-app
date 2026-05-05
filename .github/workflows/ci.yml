@@ -32,6 +32,11 @@ jobs:
         run: |
           cd hrms-backend
           npm run build
+          
+     # Docker build
+      - name: Build Docker Image
+        run: |
+          docker build -t hrms-backend ./hrms-backend
 
       # Frontend
       - name: Install Frontend Dependencies

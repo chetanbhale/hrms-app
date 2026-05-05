@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./hrms-backend
+    container_name: hrms-backend
+    ports:
+      - "5000:5000"
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/hrms
+      - JWT_SECRET=supersecret
+    depends_on:
+      - mongo
+    restart: always
+
+  mongo:
+    image: mongo:6
+    container_name: hrms-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    restart: always
+
+
+  # frontend:
+  #   build: ./hrms-frontend
+  #   container_name: hrms-frontend
+  #   ports:
+  #     - "4200:4200"
+  #   depends_on:
+  #     - backend
+volumes:
+  mongo-data:
