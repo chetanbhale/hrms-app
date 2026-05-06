@@ -26,3 +26,13 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Backend
+hrms-backend/node_modules
+hrms-backend/dist
+hrms-backend/.env
+
+# Frontend
+hrms-frontend/node_modules
+hrms-frontend/dist
+hrms-frontend/.angular

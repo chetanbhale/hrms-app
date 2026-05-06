@@ -3,8 +3,9 @@ import jwt from "jsonwebtoken";
 import { User } from "../user/user.model";
 import { ApiError } from "../../utils/ApiError";
 import { config } from "../../config/env";
+import { RegisterUserDto } from "../../types/auth.types";
 
-export const registerService = async (data: any) => {
+export const registerService = async (data: RegisterUserDto) => {
   const existing = await User.findOne({ email: data.email });
 
   if (existing) {
@@ -46,8 +47,8 @@ export const loginService = async (email: string, password: string) => {
     { expiresIn: "1d" }
   );
 
-  const { password: userPassword, ...userWithoutPassword } =
-    user.toObject();
+const userObject = user.toObject();
+delete (userObject as Partial<typeof userObject>)._id;
 
-  return { user: userWithoutPassword, token };
+return { user: userObject, token };
 };

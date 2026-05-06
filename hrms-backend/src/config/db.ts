@@ -1,4 +1,4 @@
-import mongoose, { mongo } from "mongoose"
+import mongoose from "mongoose"
 import { config } from "./env"
 
 export const connectDB =  async ()=>{
@@ -7,7 +7,7 @@ export const connectDB =  async ()=>{
         console.log("DB Connected sucessfully")
 
     }catch (error){
-        console.log("Somthing went wrong in DB connection",config.mongoUri)
+        console.log("Somthing went wrong in DB connection",error,config.mongoUri)
         process.exit(1)
     }
 }

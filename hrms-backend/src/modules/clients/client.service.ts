@@ -1,4 +1,3 @@
-import { promise } from "zod";
 import { ApiError } from "../../utils/ApiError";
 import { IClient } from "./client.interface";
 import { Client } from "./client.model";

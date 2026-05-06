@@ -1,10 +1,10 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response } from "express";
+import { AppError } from "../types/error.types";
 
 export const globalErrorHandler = (
-  err: any,
+  err: AppError,
   req: Request,
-  res: Response,
-  next: NextFunction
+  res: Response
 ) => {
   console.error("🔥 Error:", err.message);
 
@@ -12,10 +12,11 @@ export const globalErrorHandler = (
   let message = "Internal Server Error";
 
   // Mongoose validation error
-  if (err.name === "ValidationError") {
+  if (err.name === "ValidationError" && err.errors) {
     statusCode = 400;
+
     message = Object.values(err.errors)
-      .map((val: any) => val.message)
+      .map((val) => val.message)
       .join(", ");
   }
 
