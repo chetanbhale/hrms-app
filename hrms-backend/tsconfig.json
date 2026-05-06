@@ -8,5 +8,10 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
      "types": ["node", "express"]
-  }
+  },
+       "exclude": [
+  "node_modules",
+  "dist",
+  "eslint.config.mts"
+]
 }
