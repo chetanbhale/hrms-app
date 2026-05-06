@@ -9,7 +9,7 @@
     "start": "node dist/server.js",
     "test": "echo \"No tests yet\"",
     "lint": "eslint . --ext .ts",
-    "prepare": "husky"
+    "prepare": "husky || true"
   },
   "keywords": [],
   "author": "",
