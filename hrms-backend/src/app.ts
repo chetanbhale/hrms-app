@@ -5,6 +5,7 @@ import morgan from 'morgan'
 import clientRouter from './modules/clients/client.routes';
 import { globalErrorHandler } from './middlewares/error.middleware';
 import authRoutes from './modules/auth/auth.routes';
+import userRouter from './modules/user/user.routes'
 
 const app = express();
 
@@ -20,6 +21,6 @@ app.use('/api/clients',clientRouter)
 app.get('/health',(req,res)=>{
     res.json({message:"HRMS Backend running."})
 });
-
+app.use("/api/users", userRouter);
 app.use(globalErrorHandler);
 export default app

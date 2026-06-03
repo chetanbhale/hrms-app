@@ -48,6 +48,7 @@ export const loginService = async (email: string, password: string) => {
   );
 
 const userObject = user.toObject();
+delete (userObject as Partial<typeof userObject>).password;
 delete (userObject as Partial<typeof userObject>)._id;
 
 return { user: userObject, token };

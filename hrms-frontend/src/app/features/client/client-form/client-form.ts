@@ -26,7 +26,8 @@ export class ClientForm {
     this.createClientForm = this.fb.group({
       companyName: [''],
       companyEmail: [''],
-      subscriptionPlan: ['FREE']
+      subscriptionPlan: ['FREE'],
+      password: ['']
     });
   }
 
@@ -52,6 +53,7 @@ export class ClientForm {
     } else {
       this.clientService.createClient(this.createClientForm.value)
         .subscribe(() => {
+          console.log(this.createClientForm.value)
           alert('Created successfully');
           this.router.navigate(['/clients']);
         });

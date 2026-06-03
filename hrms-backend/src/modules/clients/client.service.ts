@@ -1,7 +1,8 @@
 import { ApiError } from "../../utils/ApiError";
+import { User } from "../user/user.model";
 import { IClient } from "./client.interface";
 import { Client } from "./client.model";
-
+import bcrypt from "bcryptjs"
 export const createClientService = async (data: IClient) => {
   const existing = await Client.findOne({
     companyEmail: data.companyEmail,
@@ -10,8 +11,29 @@ export const createClientService = async (data: IClient) => {
   if (existing) {
     throw new ApiError(400, "Client with this email already exists");
   }
+  // Create client first
+  const client = await Client.create({
+    companyName: data.companyName,
+    companyEmail: data.companyEmail,
+    subscriptionPlan: data.subscriptionPlan,
+    createdBy: data.createdBy
+  });
+    // Hash password
+  const hashedPassword = await bcrypt.hash(
+    data.password,
+    10
+  );
 
-  return await Client.create(data);
+  // Create CLIENT_ADMIN user
+  await User.create({
+  name: data.companyName,
+  email: data.companyEmail,
+  password: hashedPassword,
+  role: "CLIENT_ADMIN",
+  clientId: client._id.toString(),
+});
+
+  return client;
 };
 
 export const getAllClientsService = async (page:number,limit:number) =>{

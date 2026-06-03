@@ -1,0 +1,31 @@
+<h2>Add User</h2>
+
+<form [formGroup]="creatUserForm" (ngSubmit)="onSubmit()">
+  <input
+    type="text"
+    formControlName="name"
+    placeholder="User Name"
+  />
+
+  <input
+    type="email"
+    formControlName="email"
+    placeholder="Email"
+  />
+
+  <input
+    type="password"
+    formControlName="password"
+    placeholder="Password"
+  />
+
+  <select formControlName="role">
+    <option value="MANAGER">Manager</option>
+    <option value="MEMBER">Member</option>
+    <option value="CLIENT_ADMIN">Client Admin</option>
+  </select>
+
+  <button type="submit">Add User</button>
+
+</form>
+ 

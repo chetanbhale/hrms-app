@@ -2,8 +2,11 @@ import { RequestHandler } from "express";
 import { createClientService, deleteClientService, getAllClientsService, getcientByIdService, updateClientService } from "./client.service";
 
 export const createClient: RequestHandler = async (req, res) => {
-   const client = await createClientService(req.body);
-   
+   const client = await createClientService({
+  ...req.body,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  createdBy:  (req as any).user.id
+});
    res.status(201).json({ success: true, data: client });
 };
 export const getAllClients:RequestHandler = async(req,res) =>{

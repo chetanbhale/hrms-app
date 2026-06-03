@@ -9,6 +9,12 @@ const clientSchema = new Schema<IClient>({
         unique:true,
         lowercase:true
     },
+    clientId:{
+      type:String,
+      trim:true,
+      unique:true,
+      lowercase:true
+    },
     companyName:{
         type:String,
         required:true,

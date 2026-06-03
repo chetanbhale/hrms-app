@@ -26,6 +26,7 @@ describe('ClientForm', () => {
 
     fixture = TestBed.createComponent(ClientForm);
     component = fixture.componentInstance;
+    fixture.detectChanges();
     await fixture.whenStable();
   });
 
