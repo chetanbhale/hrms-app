@@ -26,6 +26,11 @@ export const routes: Routes = [
   component: UserForm,
   canActivate: [authGuardGuard]
 },
+   {
+  path: 'users/edit/:id',
+  component: UserForm,
+  canActivate: [authGuardGuard]
+},
       // default route
   { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];

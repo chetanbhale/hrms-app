@@ -9,14 +9,27 @@ import { Router, RouterOutlet } from '@angular/router';
 })
 export class App {
   protected readonly title = signal('hrms-frontend');
+  user = signal(
+  JSON.parse(
+    sessionStorage.getItem('user') || '{}'
+  )
+);
   constructor(private router: Router) {}
 
 goToClients() {
   this.router.navigate(['/clients']);
 }
 
+goToUsers() {
+  this.router.navigate(['/users']);
+}
+
 addClient() {
   this.router.navigate(['/clients/create']);
+}
+
+addUsers() {
+  this.router.navigate(['/users/create']);
 }
 
 logout() {

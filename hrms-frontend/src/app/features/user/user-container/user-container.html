@@ -1,1 +1,15 @@
-<p>user-container works!</p>
+@if (loading()) {
+  <div>Loading...</div>
+}
+
+@if (error()) {
+  <div style="color:red;">
+    {{ error() }}
+  </div> 
+}
+
+<app-user-list 
+  [users]="users()"  
+  (deleteUser)="onDeleteUser($event)" 
+  (updateUser)="onEditUser($event)">
+</app-user-list>

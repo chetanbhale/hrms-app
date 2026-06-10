@@ -2,6 +2,29 @@
 
 <p>Welcome to HRMS Dashboard</p>
 <form (ngSubmit)="onSubmit()">
-  
   <button type="submit">Logout</button>
 </form>
+
+<div>
+<div class="card">
+  Total Clients: {{ stats()?.totalClients }}
+</div>
+
+<div class="card">
+  Total Users: {{ stats()?.totalUsers }}
+</div>
+<div class="card">
+  Super Admins: {{ stats()?.superAdmins }}
+</div>
+<div class="card">
+  Client Admins: {{ stats()?.clientAdmins }}
+</div>
+
+<div class="card">
+  Managers: {{ stats()?.managers }}
+</div>
+
+<div class="card">
+  Members: {{ stats()?.members }}
+</div>
+</div>

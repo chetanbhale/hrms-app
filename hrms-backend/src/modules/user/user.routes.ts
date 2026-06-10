@@ -2,7 +2,7 @@ import { Router } from "express";
 import { authenticate } from "../../middlewares/auth.middleware";
 import { authorizeRoles } from "../../middlewares/authorize.middleware";
 import { UserRole } from "../../constants/roles";
-import { createUser, getUsers } from "./user.controller";
+import { createUser, getUserByID, getUsers, updateUser } from "./user.controller";
 
 const userRouter = Router();
 
@@ -27,5 +27,15 @@ userRouter.get(
   getUsers
 );
 
+userRouter.get(
+  "/:id",
+  authenticate,
+  authorizeRoles( UserRole.SUPER_ADMIN,
+    UserRole.CLIENT_ADMIN),
+  getUserByID
+);
+
+userRouter.patch("/:id",authenticate,authorizeRoles( UserRole.SUPER_ADMIN,
+    UserRole.CLIENT_ADMIN),updateUser);
 
 export default userRouter;

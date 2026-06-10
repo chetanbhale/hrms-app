@@ -5,10 +5,24 @@
   </div>
 
   <div>
-    <button (click)="goToClients()">Clients</button>
-    <button (click)="addClient()">Add Client</button>
+
+    @if(user().role === 'SUPER_ADMIN') {
+      <button (click)="goToClients()">Clients</button>
+      <button (click)="addClient()">Add Client</button>
+    }
+
+    @if(
+      user().role === 'SUPER_ADMIN' ||
+      user().role === 'CLIENT_ADMIN'
+    ) {
+      <button (click)="goToUsers()">Users</button>
+      <button (click)="addUsers()">Add Users</button>
+    }
+
     <button (click)="logout()">Logout</button>
+
   </div>
 
 </div>
+
 <router-outlet></router-outlet>

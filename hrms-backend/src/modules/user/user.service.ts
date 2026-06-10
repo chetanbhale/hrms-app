@@ -1,7 +1,7 @@
 import { UserRole } from "../../constants/roles"
 import { AuthRequest } from "../../middlewares/auth.middleware";
 import { ApiError } from "../../utils/ApiError";
-import { User } from "./user.model";
+import { IUser, User } from "./user.model";
 import bcrypt from 'bcryptjs'
 
 export const createUserService = async (req: AuthRequest) => {
@@ -124,7 +124,7 @@ export const getUsersService = async (
 
   const users =
     await User.find(filter)
-      .select("-password")
+      .select("-password -__v")
       .skip(skip)
       .limit(limit)
       .sort({
@@ -146,3 +146,33 @@ export const getUsersService = async (
     ),
   };
 };
+
+export const getuserByIdService =  async (id:string) =>{
+    const user = await User.findById(id);
+      if (!user || !user.isActive) {
+    throw new ApiError(404, "user not found");
+    }
+    return user
+}
+
+export const updateUserService = async (id:string, data:Partial<IUser>)=>{
+    const updated = await User.findByIdAndUpdate(id,data,{new:true}).select('-password');
+      if (!updated) {
+    throw new ApiError(404, "User not found");
+  }
+  return updated;
+}
+
+export const deleteUserService = async (id:string)=>{
+  const deleted = await User.findByIdAndUpdate(
+    id,
+    { isActive: false },
+    { new: true }
+  );
+
+  if (!deleted) {
+    throw new ApiError(404, "Client not found");
+  }
+
+  return deleted;
+}
